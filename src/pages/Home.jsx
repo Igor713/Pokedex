@@ -7,7 +7,7 @@ import axios from "axios";
 
 export default function Home() {
   const [pokemons, setPokemons] = useState([]);
-  console.log(pokemons);
+
   const getPokemons = async () => {
     let endpoints = [];
 
