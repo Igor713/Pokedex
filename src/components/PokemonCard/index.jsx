@@ -4,25 +4,26 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import './style.scss'
 
-export default function PokemonCard({ name, url }) {
+export default function PokemonCard({ id, name, url, types }) {
+    const typesFormatted = types.map(typeInfo => typeInfo.type.name)
+
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 345, borderRadius: "12px" }} className={typesFormatted[0] + ' pokemon-color'}>
             <CardActionArea>
                 <CardMedia
                     component="img"
-                    height="140"
                     image={url}
-                    alt="green iguana"
+                    alt={`Imagem do ${name}`}
                 />
-                <CardContent>
+                <CardContent sx={{ textAlign: "center" }}>
                     <Typography gutterBottom variant="h5" component="div">
-                        {name}
+                        {`${id}. ${name.charAt(0).toUpperCase() + name.slice(1)}`}
                     </Typography>
-                    {/* <Typography variant="body2" color="text.secondary">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                        species, ranging across all continents except Antarctica
-                    </Typography> */}
+                    <Typography variant="p" color="text.secondary">
+                        {typesFormatted.join(' | ')}
+                    </Typography>
                 </CardContent>
             </CardActionArea>
         </Card>
